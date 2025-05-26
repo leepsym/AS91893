@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjv4s1sm4jqjc"]
+
+[ext_resource type="Script" uid="uid://0208vx7pw2rm" path="res://World3D/enemy_prototype.gd" id="1_yav6m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4kvv"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s4kvv"]
+material = SubResource("StandardMaterial3D_s4kvv")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s4kvv"]
+
+[node name="EnemyPrototype" type="CharacterBody3D"]
+script = ExtResource("1_yav6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_s4kvv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_s4kvv")
