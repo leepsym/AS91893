@@ -35,3 +35,5 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.8
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.45, 0)
 target_position = Vector3(0, 2, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

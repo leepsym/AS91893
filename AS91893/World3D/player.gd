@@ -7,7 +7,6 @@ extends CharacterBody3D
 @onready var crouchingHitbox = $CrouchingHitbox
 @onready var headBumpChecker = $RayCast3D
 
-
 # Movement
 var current_speed = 5.0
 var walking_speed = 5.0

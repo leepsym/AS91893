@@ -14,8 +14,10 @@ script = ExtResource("1_3iy47")
 [node name="BaseEnvironment" parent="World3D" instance=ExtResource("2_8fbi6")]
 
 [node name="Player" parent="World3D" instance=ExtResource("4_syp0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0443163, 0.760106, 1.64518)
 
 [node name="EnemyPrototype" parent="World3D" instance=ExtResource("4_8fbi6")]
+transform = Transform3D(-0.026177, 0, 0.999657, 0, 1, 0, -0.999657, 0, -0.026177, 0, 0, 3.62937)
 
 [node name="World2D" type="Node2D" parent="."]
 
