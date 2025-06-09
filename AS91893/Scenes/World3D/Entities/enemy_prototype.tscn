@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjv4s1sm4jqjc"]
+
+[ext_resource type="Script" uid="uid://0208vx7pw2rm" path="res://Scripts/3D/Entities/enemy_prototype.gd" id="1_yav6m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4kvv"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s4kvv"]
+material = SubResource("StandardMaterial3D_s4kvv")
+
+[sub_resource type="SphereMesh" id="SphereMesh_n5a83"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s4kvv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yav6m"]
+points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_057dn"]
+
+[node name="EnemyPrototype" type="CharacterBody3D"]
+script = ExtResource("1_yav6m")
+
+[node name="BodyPlaceholder" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_s4kvv")
+
+[node name="EyePlaceholder" type="MeshInstance3D" parent="BodyPlaceholder"]
+transform = Transform3D(0.325, 0, 0, 0, 0.325, 0, 0, 0, 0.325, -0.00259036, 0.62776, -0.430083)
+mesh = SubResource("SphereMesh_n5a83")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_s4kvv")
+
+[node name="VisionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_mask = 16
+
+[node name="VisionCollision" type="CollisionShape3D" parent="VisionArea"]
+transform = Transform3D(15, 0, 0, 0, -3.0598e-07, -3, 0, 7, -1.31134e-07, 0, 0, -6.5)
+shape = SubResource("ConvexPolygonShape3D_yav6m")
+
+[node name="VisionRaycast" type="RayCast3D" parent="VisionArea"]
+target_position = Vector3(0, 0, -20)
+collision_mask = 19
+
+[node name="VisionTimer" type="Timer" parent="VisionArea"]
+wait_time = 0.01
+autostart = true
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="HearingArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HearingArea"]
+transform = Transform3D(50, 0, 0, 0, 3, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("CylinderShape3D_057dn")
+
+[connection signal="timeout" from="VisionArea/VisionTimer" to="." method="_on_vision_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf0br7kkkd3hx"]
+
+[ext_resource type="Script" uid="uid://dimrui1igg23s" path="res://Scripts/Management/game_controller.gd" id="1_3iy47"]
+[ext_resource type="PackedScene" uid="uid://bte0shriwtj44" path="res://Scenes/World3D/Enviornment/base_environment.tscn" id="2_8fbi6"]
+[ext_resource type="PackedScene" uid="uid://cjv4s1sm4jqjc" path="res://Scenes/World3D/Entities/enemy_prototype.tscn" id="4_8fbi6"]
+[ext_resource type="PackedScene" uid="uid://eik7s0783a8f" path="res://Scenes/World3D/Entities/player.tscn" id="4_syp0s"]
+
+[node name="GameController" type="Node"]
+script = ExtResource("1_3iy47")
+
+[node name="World3D" type="Node3D" parent="."]
+
+[node name="BaseEnvironment" parent="World3D" instance=ExtResource("2_8fbi6")]
+
+[node name="Player" parent="World3D" instance=ExtResource("4_syp0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="EnemyPrototype" parent="World3D" node_paths=PackedStringArray("base_envorionment") instance=ExtResource("4_8fbi6")]
+transform = Transform3D(-0.358694, 0, 0.933455, 0, 1, 0, -0.933455, 0, -0.358694, 0, 1, 3.719)
+base_envorionment = NodePath("../BaseEnvironment")
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
