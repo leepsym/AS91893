@@ -37,7 +37,6 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -47,7 +46,6 @@ environment = SubResource("Environment_etnr3")
 navigation_mesh = SubResource("NavigationMesh_gak8b")
 
 [node name="Environemnt" type="Node3D" parent="NavigationRegion3D"]
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Environemnt"]
 transform = Transform3D(30.97, 0, 0, 0, 30.97, 0, 0, 0, 30.97, 0.0221691, 4.76837e-07, 0.00435066)
@@ -112,8 +110,99 @@ shape = SubResource("ConcavePolygonShape3D_5y15o")
 [node name="EnemyTraverseNodes" type="Node3D" parent="NavigationRegion3D"]
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1841, 0, 0)
 collision_layer = 32
-collision_mask = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D2" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.6104)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D2"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D3" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00386, 0, 14.1506)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D3"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D4" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0227, 0, 22.7519)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D4"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D5" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5127, 0, 0)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D5"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D6" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.18207, 0, -20.862)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D6"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D7" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7435, 0, -10.7176)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D7"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D8" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51777, 0, -24.6803)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D8"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D9" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8265, 0, -14.6466)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D9"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="Area3D10" type="Area3D" parent="NavigationRegion3D/EnemyTraverseNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18742, 0, -2.53151)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D10"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CylinderShape3D_an303")
+
+[node name="PlayerLastSeenRadius" type="Area3D" parent="NavigationRegion3D"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/PlayerLastSeenRadius"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 1, 0)
 shape = SubResource("CylinderShape3D_an303")

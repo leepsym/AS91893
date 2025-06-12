@@ -1,9 +1,15 @@
 extends CharacterBody3D
 
+
+@export var base_environment : Node3D
+
 @onready var nav_agent = $NavigationAgent
 @onready var vision_raycast = $VisionArea/VisionRaycast
-@export var base_envorionment : Node3D
-@onready var traverse_nodes = base_envorionment.get_node("NavigationRegion3D/EnemyTraverseNodes")
+@onready var navigation_region = base_environment.get_node("NavigationRegion3D")
+@onready var traverse_nodes = navigation_region.get_node("EnemyTraverseNodes")
+@onready var player_node = navigation_region.get_node("PlayerLastSeenRadius")
+
+@onready var current_node = traverse_nodes.get_child(0)
 
 
 var rnd = RandomNumberGenerator.new()
@@ -13,10 +19,11 @@ const MAX_HEALTH = 10.0
 const SPEED = 1.5
 const ACCELERATION = 10
 
-var player_last_seen
+var player_last_seen : Vector3
 
-func _on_ready():
-	nav_agent.target_position = traverse_nodes.get_child(rnd.randi_range(0, 9))
+func _ready():
+	current_node = traverse_nodes.get_child(rnd.randi_range(0, 9))
+	nav_agent.target_position = current_node.global_transform.origin
 
 func _physics_process(delta):
 	# Chasing player if seen
@@ -35,6 +42,7 @@ func _physics_process(delta):
 						vision_raycast.look_at(player_position)
 						nav_agent.target_position = player_last_seen
 				else:
+					
 					nav_agent.target_position = player_last_seen
 					look_at(global_transform.origin + velocity)
 			else:
@@ -58,6 +66,15 @@ func _physics_process(delta):
 
 func traverse():
 	look_at(global_transform.origin + velocity)
-	print(velocity)
-	if (global_transform.origin >= nav_agent.get_next_path_position()):
-		nav_agent.target_position = traverse_nodes.get_child(rnd.randi_range(0, 9)).global_transform.origin
+	
+	if (player_last_seen == nav_agent.target_position):
+		if (player_node.global_transform.origin != player_last_seen): 
+			player_node.global_transform.origin = player_last_seen
+			current_node = player_node
+	
+	var overlaps = current_node.get_overlapping_bodies()
+	for overlap in overlaps:
+		print(overlap)
+		if overlap == self:
+			current_node = traverse_nodes.get_child(rnd.randi_range(0, 9))
+			nav_agent.target_position = current_node.global_transform.origin

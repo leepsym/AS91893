@@ -18,6 +18,8 @@ points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.9808
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_057dn"]
 
 [node name="EnemyPrototype" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_yav6m")
 
 [node name="BodyPlaceholder" type="MeshInstance3D" parent="."]
