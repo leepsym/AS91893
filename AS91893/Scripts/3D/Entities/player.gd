@@ -16,8 +16,6 @@ var sprinting_speed = 8.0
 var lerp_speed = 10.0
 var direction = Vector3.ZERO
 
-var emmitting_noise = false
-
 # User controlled variables
 var mouse_sens = 0.375
 
@@ -35,7 +33,7 @@ func _physics_process(delta):
 		head.position.y = lerp(head.position.y, 0.8 + crouching_depth, delta * lerp_speed)
 		standingHitbox.disabled = true
 		crouchingHitbox.disabled = false
-		emmitting_noise = false
+		Hub.player_noise = false
 	elif !headBumpChecker.is_colliding():
 		crouchingHitbox.disabled = true
 		standingHitbox.disabled = false
@@ -44,7 +42,13 @@ func _physics_process(delta):
 			current_speed = sprinting_speed
 		else:
 			current_speed = walking_speed
-		emmitting_noise = true
+		if !(velocity.x > -0.3 && velocity.x < 0.3) or !(velocity.z > -0.3 && velocity.z < 0.3):
+			Hub.player_noise = true
+		elif (velocity.x > -0.3 && velocity.x < 0.3) && (velocity.z > -0.3 && velocity.z < 0.3):
+			Hub.player_noise = false
+	
+	print(velocity)
+	print(Hub.player_noise)
 	
 	# Add the gravity.
 	if not is_on_floor():

@@ -11,7 +11,7 @@ var current_gui_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.game_controller = self
+	Hub.game_controller = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

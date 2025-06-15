@@ -2,6 +2,9 @@ extends Node
 
 var game_controller : GameController
 
+# Game Variables
+var player_noise := false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

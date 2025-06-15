@@ -55,7 +55,13 @@ debug_enabled = true
 [node name="HearingArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HearingArea"]
-transform = Transform3D(50, 0, 0, 0, 3, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(60, 0, 0, 0, 3, 0, 0, 0, 60, 0, 0, 0)
+shape = SubResource("CylinderShape3D_057dn")
+
+[node name="CloseHearingArea" type="Area3D" parent="HearingArea"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HearingArea/CloseHearingArea"]
+transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 30, 0, 0, 0)
 shape = SubResource("CylinderShape3D_057dn")
 
 [connection signal="timeout" from="VisionArea/VisionTimer" to="." method="_on_vision_timer_timeout"]
