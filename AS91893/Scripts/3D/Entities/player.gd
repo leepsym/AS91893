@@ -47,9 +47,6 @@ func _physics_process(delta):
 		elif (velocity.x > -0.3 && velocity.x < 0.3) && (velocity.z > -0.3 && velocity.z < 0.3):
 			Hub.player_noise = false
 	
-	print(velocity)
-	print(Hub.player_noise)
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

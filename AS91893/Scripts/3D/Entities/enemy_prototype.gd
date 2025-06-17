@@ -1,28 +1,34 @@
 extends CharacterBody3D
 
-
-@export var base_environment : Node3D
-
 @onready var nav_agent = $NavigationAgent
 @onready var vision_raycast = $VisionArea/VisionRaycast
 @onready var hearing_node = $HearingArea
 @onready var close_hearing_node = $HearingArea/CloseHearingArea
 
 
-@onready var navigation_region = base_environment.get_node("NavigationRegion3D")
-@onready var traverse_nodes = navigation_region.get_node("EnemyTraverseNodes")
-@onready var player_node = navigation_region.get_node("PlayerLastSeenRadius")
-@onready var current_node = traverse_nodes.get_child(rnd.randi_range(0, 9))
+# Containers
+@onready var base = get_parent().get_parent().get_parent()
+@onready var world = base.get_node("World3D")
+@onready var base_environment = world.get_node("BaseEnvironment")
+@onready var nav_region = base_environment.get_node("NavigationRegion3D")
+@onready var traverse_nodes = nav_region.get_node("EnemyTraverseNodes")
+
+# Nodes
+@onready var player_node = world.get_node("PlayerLastSeenRadius")
+@onready var player_heard_range = world.get_node("PlayerLastHeardRadius")
+@onready var current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 
 
 var rnd = RandomNumberGenerator.new()
 
 
 const MAX_HEALTH = 10.0
-const SPEED = 1.5
+const SPEED = 2.5
+const CHASE_SPEED = 6
 const ACCELERATION = 10
 
 var player_last_seen : Vector3
+var player_seen = false
 
 func _ready():
 	nav_agent.target_position = current_node.global_transform.origin # Set pathfinding to first node
@@ -43,8 +49,9 @@ func _physics_process(delta):
 						look_at(player_last_seen)
 						vision_raycast.look_at(player_position)
 						nav_agent.target_position = player_last_seen
+						player_seen = true
 				else:
-					
+					player_seen = false
 					nav_agent.target_position = player_last_seen
 					look_at(global_transform.origin + velocity)
 			else:
@@ -57,9 +64,12 @@ func _physics_process(delta):
 	# Moving
 	var direction = Vector3()
 	
-	if (player_last_seen != null):
-		
-		direction = (nav_agent.get_next_path_position() - global_transform.origin).normalized() * SPEED
+	if player_last_seen != null:
+		if player_seen:
+			direction = (nav_agent.get_next_path_position() - global_transform.origin).normalized() * CHASE_SPEED
+		else:
+			direction = (nav_agent.get_next_path_position() - global_transform.origin).normalized() * SPEED
+	
 		
 		velocity = velocity.lerp(direction, delta * 10)
 		velocity.y = 0
@@ -71,7 +81,7 @@ func _physics_process(delta):
 func traverse():
 	look_at(global_transform.origin + velocity)
 	
-	if (player_last_seen == nav_agent.target_position):
+	if (player_seen):
 		if (player_node.global_transform.origin != player_last_seen): 
 			player_node.global_transform.origin = player_last_seen
 			current_node = player_node
@@ -79,22 +89,33 @@ func traverse():
 	var overlaps = current_node.get_overlapping_bodies()
 	for overlap in overlaps:
 		if overlap == self:
-			current_node = traverse_nodes.get_child(rnd.randi_range(0, 9))
+			current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 			nav_agent.target_position = current_node.global_transform.origin
+			print(current_node.global_transform.origin)
 
 
 func hearing():
+	print("hearing1")
+	print(Hub.player_noise)
 	var hearing_overlaps = hearing_node.get_overlapping_bodies()
 	for overlap in hearing_overlaps:
 		if overlap.name == "Player" && Hub.player_noise:
-			player_last_seen = overlap.global_transform.origin
+			#player_last_seen = overlap.global_transform.origin
 			
-			if (player_node.global_transform.origin != player_last_seen): 
-				player_node.global_transform.origin = player_last_seen
-				current_node = player_node
-				
+			if (player_heard_range.global_transform.origin != player_last_seen): 
+				player_heard_range.global_transform.origin = player_last_seen
+				var nearby_nodes = player_heard_range.get_overlapping_areas()
+				print(nearby_nodes.size())
+				if nearby_nodes.size() > 0:
+					current_node = nearby_nodes[rnd.randi_range(0, nearby_nodes.size())]
+				elif (player_node.global_transform.origin != player_last_seen): 
+						player_node.global_transform.origin = player_last_seen
+						current_node = player_node
+				print(current_node)
+			
 			nav_agent.target_position = current_node.global_transform.origin
 	
+	print("hearing2")
 	var close_hearing_overlaps = close_hearing_node.get_overlapping_bodies()
 	for overlap in close_hearing_overlaps:
 		if overlap.name== "Player" && Hub.player_noise:
@@ -103,5 +124,6 @@ func hearing():
 			if (player_node.global_transform.origin != player_last_seen): 
 				player_node.global_transform.origin = player_last_seen
 				current_node = player_node
+				print(current_node)
 			
 			nav_agent.target_position = current_node.global_transform.origin
