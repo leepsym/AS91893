@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AS91803"
-run/main_scene="uid://c4ck5lingtiij"
+run/main_scene="uid://cf0br7kkkd3hx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]

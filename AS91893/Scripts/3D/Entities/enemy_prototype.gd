@@ -9,13 +9,15 @@ extends CharacterBody3D
 # Containers
 @onready var base = get_parent().get_parent().get_parent()
 @onready var world = base.get_node("World3D")
-@onready var base_environment = world.get_node("BaseEnvironment")
-@onready var nav_region = base_environment.get_node("NavigationRegion3D")
+@onready var environment = world.get_node("Environment")
+@onready var areas = world.get_node("Areas")
+@onready var entities = world.get_node("Entities")
+@onready var nav_region = environment.get_node("NavigationRegion3D")
 @onready var traverse_nodes = nav_region.get_node("EnemyTraverseNodes")
 
 # Nodes
-@onready var player_node = world.get_node("PlayerLastSeenRadius")
-@onready var player_heard_range = world.get_node("PlayerLastHeardRadius")
+@onready var player_node = areas.get_node("PlayerLastSeenRadius")
+@onready var player_heard_range = areas.get_node("PlayerLastHeardRadius")
 @onready var current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 
 
@@ -23,8 +25,8 @@ var rnd = RandomNumberGenerator.new()
 
 
 const MAX_HEALTH = 10.0
-const SPEED = 2.5
-const CHASE_SPEED = 6
+const SPEED = 4
+const CHASE_SPEED = 7
 const ACCELERATION = 10
 
 var player_last_seen : Vector3
@@ -91,31 +93,24 @@ func traverse():
 		if overlap == self:
 			current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 			nav_agent.target_position = current_node.global_transform.origin
-			print(current_node.global_transform.origin)
 
 
 func hearing():
-	print("hearing1")
-	print(Hub.player_noise)
 	var hearing_overlaps = hearing_node.get_overlapping_bodies()
 	for overlap in hearing_overlaps:
 		if overlap.name == "Player" && Hub.player_noise:
-			#player_last_seen = overlap.global_transform.origin
-			
 			if (player_heard_range.global_transform.origin != player_last_seen): 
 				player_heard_range.global_transform.origin = player_last_seen
 				var nearby_nodes = player_heard_range.get_overlapping_areas()
-				print(nearby_nodes.size())
+				
 				if nearby_nodes.size() > 0:
 					current_node = nearby_nodes[rnd.randi_range(0, nearby_nodes.size())]
 				elif (player_node.global_transform.origin != player_last_seen): 
 						player_node.global_transform.origin = player_last_seen
 						current_node = player_node
-				print(current_node)
 			
 			nav_agent.target_position = current_node.global_transform.origin
 	
-	print("hearing2")
 	var close_hearing_overlaps = close_hearing_node.get_overlapping_bodies()
 	for overlap in close_hearing_overlaps:
 		if overlap.name== "Player" && Hub.player_noise:
@@ -124,6 +119,5 @@ func hearing():
 			if (player_node.global_transform.origin != player_last_seen): 
 				player_node.global_transform.origin = player_last_seen
 				current_node = player_node
-				print(current_node)
 			
 			nav_agent.target_position = current_node.global_transform.origin

@@ -28,7 +28,7 @@ data = PackedVector3Array(30.9996, 2.9996, -15.0007, 30.9996, 3.9998, -15.0007, 
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_an303"]
 
-[node name="BaseEnvironment" type="Node3D"]
+[node name="Environment" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.707554, 0.611986, -0.353329, 0, 0.499998, 0.866027, 0.70666, 0.61276, -0.353776, -9.45742, 5.90361, 0)

@@ -8,11 +8,11 @@ extends CharacterBody3D
 @onready var headBumpChecker = $RayCast3D
 
 # Movement
-var current_speed = 5.0
-var walking_speed = 5.0
-var crouching_speed = 3.0
+var current_speed = 3.0
+var walking_speed = 3.0
+var crouching_speed = 1.5
 var crouching_depth = -0.45
-var sprinting_speed = 8.0
+var sprinting_speed = 5.0
 var lerp_speed = 10.0
 var direction = Vector3.ZERO
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dimrui1igg23s" path="res://Scripts/Management/game_controller.gd" id="1_3iy47"]
 [ext_resource type="PackedScene" uid="uid://bte0shriwtj44" path="res://Scenes/World3D/Enviornment/level_0.tscn" id="2_8fbi6"]
-[ext_resource type="PackedScene" uid="uid://cjv4s1sm4jqjc" path="res://Scenes/World3D/Entities/enemy_prototype.tscn" id="4_8fbi6"]
+[ext_resource type="PackedScene" uid="uid://cjv4s1sm4jqjc" path="res://Scenes/World3D/Entities/enemy.tscn" id="4_8fbi6"]
 [ext_resource type="PackedScene" uid="uid://eik7s0783a8f" path="res://Scenes/World3D/Entities/player.tscn" id="4_syp0s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ymhq2"]
@@ -12,7 +12,7 @@ script = ExtResource("1_3iy47")
 
 [node name="World3D" type="Node3D" parent="."]
 
-[node name="BaseEnvironment" parent="World3D" instance=ExtResource("2_8fbi6")]
+[node name="Environment" parent="World3D" instance=ExtResource("2_8fbi6")]
 
 [node name="Entities" type="Node3D" parent="World3D"]
 
@@ -20,7 +20,7 @@ script = ExtResource("1_3iy47")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 30)
 
 [node name="Player" parent="World3D/Entities" instance=ExtResource("4_syp0s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Areas" type="Node3D" parent="World3D"]
 
