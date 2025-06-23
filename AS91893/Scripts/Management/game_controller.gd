@@ -1,23 +1,12 @@
 class_name GameController extends Node
 
-@export var world_3d : Node3D
-@export var world_2d : Node2D
-@export var gui : Control
+@onready var world_3d = $World3D
+@onready var world_2d = $World2D
+@onready var gui = $GUI
 
 var current_3d_scene
 var current_2d_scene
 var current_gui_scene
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Hub.game_controller = self
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:

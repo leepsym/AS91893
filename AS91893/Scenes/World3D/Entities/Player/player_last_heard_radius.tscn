@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8y4nfcvhrkh7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ymhq2"]
+
+[node name="PlayerLastHeardRadius" type="Area3D"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 2, 0)
+shape = SubResource("CylinderShape3D_ymhq2")

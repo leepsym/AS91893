@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjv4s1sm4jqjc"]
 
-[ext_resource type="Script" uid="uid://0208vx7pw2rm" path="res://Scripts/3D/Entities/enemy_prototype.gd" id="1_yav6m"]
+[ext_resource type="Script" uid="uid://rpvgs830uw36" path="res://Scripts/3D/Entities/enemy.gd" id="1_0o2od"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4kvv"]
 albedo_color = Color(1, 0, 0, 1)
@@ -20,7 +20,7 @@ points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.9808
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_yav6m")
+script = ExtResource("1_0o2od")
 
 [node name="BodyPlaceholder" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_s4kvv")
@@ -45,10 +45,6 @@ shape = SubResource("ConvexPolygonShape3D_yav6m")
 target_position = Vector3(0, 0, -20)
 collision_mask = 19
 
-[node name="VisionTimer" type="Timer" parent="VisionArea"]
-wait_time = 0.01
-autostart = true
-
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 
 [node name="HearingArea" type="Area3D" parent="."]
@@ -64,5 +60,3 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HearingArea/CloseHearingArea"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 30, 0, 0, 0)
 shape = SubResource("CylinderShape3D_057dn")
-
-[connection signal="timeout" from="VisionArea/VisionTimer" to="." method="_on_vision_timer_timeout"]

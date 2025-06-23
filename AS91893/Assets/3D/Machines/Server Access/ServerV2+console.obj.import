@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dax14r4gmg66s"
+path="res://.godot/imported/ServerV2+console.obj-7b03062691d5a37d7aa03cddff67fb1f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ServerV2+console.obj-7b03062691d5a37d7aa03cddff67fb1f.mesh"]
+
+source_file="res://Assets/3D/Machines/Server Access/ServerV2+console.obj"
+dest_files=["res://.godot/imported/ServerV2+console.obj-7b03062691d5a37d7aa03cddff67fb1f.mesh", "res://.godot/imported/ServerV2+console.obj-7b03062691d5a37d7aa03cddff67fb1f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
