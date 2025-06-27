@@ -5,14 +5,13 @@ extends CharacterBody3D
 
 
 # Containers
-@onready var world3D = Hub.game_controller.get_node("World3D")
-@onready var environment = world3D.get_node("Environment")
+@onready var environment = get_parent().get_node("Environment")
+@onready var nav_region = environment.get_node("NavigationRegion3D")
 @onready var traverse_nodes = nav_region.get_node("EnemyTraverseNodes")
 
 # Nodes
-@onready var player_node = world3D.get_node("PlayerLastSeenRadius")
-@onready var player_heard_range = world3D.get_node("PlayerLastHeardRadius")
-@onready var nav_region = environment.get_node("NavigationRegion3D")
+@onready var player_node = get_parent().get_node("PlayerLastSeenRadius")
+@onready var player_heard_range = get_parent().get_node("PlayerLastHeardRadius")
 
 @onready var current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 

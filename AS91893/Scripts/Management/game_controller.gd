@@ -1,13 +1,16 @@
 class_name GameController extends Node
 
-@onready var world_3d = $World3D
-@onready var world_2d = $World2D
-@onready var gui = $GUI
+@export var world_3d : Node3D
+@export var world_2d : Node2D
+@export var gui : Control
 
 var current_3d_scene
 var current_2d_scene
 var current_gui_scene
 
+func _ready():
+	world_3d = $World3D
+	Hub.set_game_controller(self)
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_gui_scene != null:
@@ -47,3 +50,7 @@ func change_3d_scene(new_scene: String, delete: bool = true, keep_running: bool 
 	var new = load(new_scene).instantiate()
 	world_3d.add_child(new)
 	current_3d_scene = new
+
+func load_3d_scene(new_scene: String):
+	var scene = load(new_scene).instantiate()
+	$World3D.add_child(scene)
