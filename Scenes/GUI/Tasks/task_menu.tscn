@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://krpvoupvafn2"]
+
+[ext_resource type="Texture2D" uid="uid://dugyadldsfd1g" path="res://Assets/GUI/Buttons/Keyboard keys/MV Icons Keyboard/Individual Icons/keyboard_33.png" id="1_nuxyd"]
+[ext_resource type="Texture2D" uid="uid://drtrghtn06dre" path="res://Assets/GUI/Buttons/Keyboard keys/MV Icons Keyboard/Individual Icons/keyboard_134.png" id="2_7h78f"]
+
+[node name="TaskMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 37.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_nuxyd")
+texture_pressed = ExtResource("2_7h78f")
