@@ -116,3 +116,9 @@ func hearing():
 				current_node = player_node
 			
 			nav_agent.target_position = current_node.global_transform.origin
+
+
+func attack():
+	var overlaps = get_parent().get_node("PlayerLastSeenRadius").get_overlaps()
+	if overlaps.has(get_parent().get_node("Player") ** overlaps.has(self)):
+		pass

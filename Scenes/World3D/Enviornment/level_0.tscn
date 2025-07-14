@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bte0shriwtj44"]
+[gd_scene load_steps=9 format=3 uid="uid://bte0shriwtj44"]
 
 [ext_resource type="PackedScene" uid="uid://pt264rfajasf" path="res://Assets/3D/Maps/Map 0/map_0.tscn" id="1_mkaum"]
+[ext_resource type="PackedScene" uid="uid://bfq1pnbvlsecv" path="res://Scenes/World3D/Tasks/task_access_point.tscn" id="2_ueg2p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gak8b"]
 sky_top_color = Color(0.320419, 0.608913, 0.746549, 1)
@@ -246,3 +247,6 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/EnemyTraverseNodes/Area3D22"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_an303")
+
+[node name="TaskAccessPoint" parent="." instance=ExtResource("2_ueg2p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, 30.5)

@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu3jq5h2jqgr3"]
+
+[ext_resource type="Script" uid="uid://dsxul3swpxtyc" path="res://Scripts/Management/GameManagement/settings.gd" id="1_5hj0t"]
+[ext_resource type="Theme" uid="uid://djiwidwkfnr3o" path="res://Assets/Themes/task_menu.tres" id="2_25vqn"]
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5hj0t")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="PanelContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_25vqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainMenu"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Settings" type="Button" parent="CenterContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Resume" type="Button" parent="CenterContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsMainMenu" type="PanelContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_25vqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/SettingsMainMenu"]
+process_mode = 3
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/SettingsMainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Controls" type="Button" parent="CenterContainer/SettingsMainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Return" type="Button" parent="CenterContainer/SettingsMainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="ControlsMenu" type="PanelContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_25vqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ControlsMenu"]
+process_mode = 3
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="Controls" type="Button" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="MouseSensitivity" type="Label" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+horizontal_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.37
+scrollable = false
+
+[node name="MouseSensitivityValue" type="Label" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+text = "0.375"
+horizontal_alignment = 1
+
+[node name="Return" type="Button" parent="CenterContainer/ControlsMenu/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+
+[connection signal="pressed" from="CenterContainer/MainMenu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMainMenu/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMainMenu/VBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="CenterContainer/ControlsMenu/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="value_changed" from="CenterContainer/ControlsMenu/VBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/ControlsMenu/VBoxContainer/Return" to="." method="_on_return_pressed"]

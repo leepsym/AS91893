@@ -17,7 +17,7 @@ var lerp_speed = 10.0
 var direction = Vector3.ZERO
 
 # User controlled variables
-var mouse_sens = 0.375
+var mouse_sens = 0.37
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

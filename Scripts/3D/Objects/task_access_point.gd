@@ -5,5 +5,5 @@ extends Node3D
 func _process(delta):
 	var overlaps = $PlayerAccessArea.get_overlapping_bodies()
 	for overlap in overlaps:
-		if overlap == player && Input.is_action_just_pressed("interact"):
-			pass
+		if Input.is_action_just_pressed("interact"):
+			get_node("../../../GUI/TaskInteraction").trigger()
