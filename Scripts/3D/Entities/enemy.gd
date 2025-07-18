@@ -43,10 +43,14 @@ func _physics_process(delta):
 					var collider = vision_raycast.get_collider()
 					if collider.name == "Player":
 						player_last_seen = player_position
+						
 						look_at(player_last_seen)
 						vision_raycast.look_at(player_position)
+						get_parent().get_node("PlayerLastSeenRadius").global_transform.origin = player_position
+						
 						nav_agent.target_position = player_last_seen
 						player_seen = true
+						attack()
 				else:
 					player_seen = false
 					nav_agent.target_position = player_last_seen
@@ -55,6 +59,8 @@ func _physics_process(delta):
 				traverse()
 	else:
 		traverse()
+
+	rotation.x = 0;
 	
 	hearing()
 	
@@ -119,6 +125,6 @@ func hearing():
 
 
 func attack():
-	var overlaps = get_parent().get_node("PlayerLastSeenRadius").get_overlaps()
-	if overlaps.has(get_parent().get_node("Player") ** overlaps.has(self)):
-		pass
+	var overlaps = get_parent().get_node("PlayerLastSeenRadius").get_overlapping_bodies()
+	if overlaps.has(get_parent().get_node("Player")) && overlaps.has(self):
+		print("attack")

@@ -10,7 +10,7 @@ func trigger():
 	get_tree().paused = true
 
 func _on_resume_pressed() -> void:
-	Hub.game_controller.gui_visible("Settings", false)
+	Hub.game_controller.gui_visible("Settings/CenterContainer/MainMenu", false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
 	
@@ -30,5 +30,5 @@ func _on_controls_pressed() -> void:
 	get_node("CenterContainer/ControlsMenu").visible = true
 
 func _on_sensitivity_slider_value_changed(value: float) -> void:
-	get_node("CenterContainer/ControlsMenu/VBoxContainer/MouseSensitivityValue").text = value
+	get_node("CenterContainer/ControlsMenu/VBoxContainer/MouseSensitivityValue").text = str(value)
 	get_node("../../World3D/Player").mouse_sens = value
