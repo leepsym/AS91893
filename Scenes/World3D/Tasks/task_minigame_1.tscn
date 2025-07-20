@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cchhtxy1llp0o"]
+[gd_scene load_steps=5 format=3 uid="uid://cchhtxy1llp0o"]
 
+[ext_resource type="Script" uid="uid://umc6igbagps2" path="res://Scripts/Management/Tasks/task_minigame_1.gd" id="1_2l5ec"]
 [ext_resource type="Texture2D" uid="uid://c1c660kv5looe" path="res://Assets/2D/Tilemap Assets/Dark_Bricks_tileset.png" id="1_biys7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2l5ec"]
@@ -197,7 +198,10 @@ texture = ExtResource("1_biys7")
 sources/0 = SubResource("TileSetAtlasSource_2l5ec")
 
 [node name="TaskMinigame_1" type="Node2D"]
+script = ExtResource("1_2l5ec")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_yk4wr")
 format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
