@@ -12,6 +12,7 @@ extends CharacterBody3D
 # Nodes
 @onready var player_node = get_parent().get_node("PlayerLastSeenRadius")
 @onready var player_heard_range = get_parent().get_node("PlayerLastHeardRadius")
+@onready var player = get_parent().get_node("Player")
 
 @onready var current_node = traverse_nodes.get_child(rnd.randi_range(0, traverse_nodes.get_child_count() - 1))
 
@@ -20,9 +21,12 @@ var rnd = RandomNumberGenerator.new()
 
 
 const MAX_HEALTH = 10.0
-const SPEED = 4
-const CHASE_SPEED = 7
+const SPEED = 3
+const CHASE_SPEED = 5
 const ACCELERATION = 10
+
+const DAMAGE = 10
+const COOLDOWN = 0.75
 
 var player_last_seen : Vector3
 var player_seen = false
@@ -127,4 +131,10 @@ func hearing():
 func attack():
 	var overlaps = get_parent().get_node("PlayerLastSeenRadius").get_overlapping_bodies()
 	if overlaps.has(get_parent().get_node("Player")) && overlaps.has(self):
-		print("attack")
+		if ($AttackCooldown.is_stopped()):
+			$AttackCooldown.start(COOLDOWN)
+			player._hit(DAMAGE)
+
+
+func _on_attack_cooldown_timeout() -> void:
+	$AttackCooldown.stop()

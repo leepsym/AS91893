@@ -7,14 +7,22 @@ extends CharacterBody3D
 @onready var crouchingHitbox = $CrouchingHitbox
 @onready var headBumpChecker = $RayCast3D
 
+# Statistics
+var health = 30
+var damage = 15
+var speed = 4
+
+var inventory : Array[Data]
+
 # Movement
-var current_speed = 3.0
-var walking_speed = 3.0
-var crouching_speed = 1.5
+var current_speed = 0
+var walking_speed = speed
+var crouching_speed = speed / 2
 var crouching_depth = -0.45
-var sprinting_speed = 5.0
+var sprinting_speed = speed + 2
 var lerp_speed = 10.0
 var direction = Vector3.ZERO
+
 
 # User controlled variables
 var mouse_sens = 0.37
@@ -65,3 +73,13 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+func _hit(damage:int):
+	health -= damage
+	
+	if health > 0:
+		camera.get_node("AnimationPlayer").play("player_hit")
+	else:
+		Hub.game_controller.load_gui("res://Scenes/GUI/death_screen.tscn")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true

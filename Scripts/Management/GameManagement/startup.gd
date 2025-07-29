@@ -11,7 +11,7 @@ func instance():
 	base.load_3d("res://Scenes/World3D/Entities/Player/player_last_seen_radius.tscn")
 	base.load_3d("res://Scenes/World3D/Entities/Player/player.tscn")
 	base.load_3d("res://Scenes/World3D/Entities/enemy.tscn")
-	base.load_gui("res://Scenes/Management/task_interaction.tscn")
+	base.load_gui("res://Scenes/World3D/Tasks/task_interaction.tscn")
 	base.load_gui("res://Scenes/Management/settings.tscn")
 	
 	var enemy = world3D.get_node("Enemy")

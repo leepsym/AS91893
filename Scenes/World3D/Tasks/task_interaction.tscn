@@ -29,34 +29,13 @@ theme = ExtResource("1_3g0am")
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="CompleteTask" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Task Menu"
+text = "Complete Task"
 
-[node name="Button" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_3g0am")
-action_mode = 0
-text = "New Game"
+text = "Exit Menu"
 
-[node name="Button2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Continue"
-
-[node name="Button3" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-
-[node name="Button4" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Exit"
-
-[node name="Container" type="Container" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/CompleteTask" to="." method="_on_complete_task_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
